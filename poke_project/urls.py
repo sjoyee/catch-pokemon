@@ -15,9 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from pokemon import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),
+    path('pokemon/allpokemon/', views.get_all_pokemons, name='get_all_pokemons'),
+    path('pokemon/wildpokemon/', views.get_wild_pokemons, name='get_wild_pokemons'),
+    path('pokemon/mypokemon/', views.get_owned_pokemons, name='get_owned_pokemons'),
+    path('pokemon/unownedpokemon/', views.get_unowned_pokemons,
+         name='get_unowned_pokemons'),
+    path('pokemon/addpokemon/', views.add_pokemon, name='add_pokemon'),
+    path('pokemon/releasepokemon/', views.release_pokemon, name='release_pokemon')
 ]
