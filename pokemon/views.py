@@ -1,12 +1,48 @@
-from django.shortcuts import render
+from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from rest_framework import status, generics
 from pokemon.models import Pokemon
 from pokemon.serializers import PokemonSerializer
 
-# Create your views here.
+
+@api_view(['GET'])
+def get_all_pokemons(request):
+    pokemons = Pokemon.objects.all()
+    serialize = PokemonSerializer(pokemons, many=True)
+    return Response(serialize.data)
 
 
-class Pokemon(generics.GenericAPIView):
-    serializer_class = PokemonSerializer
-    queryset = Pokemon.objects.all()
+@api_view(['GET'])
+def get_wild_pokemons(request):
+    pokemons = Pokemon.objects.filter(owner=None)
+    serialize = PokemonSerializer(pokemons, many=True)
+    return Response(serialize.data)
+
+
+@api_view(['GET'])
+def get_owned_pokemons(request):
+    pokemons = Pokemon.objects.filter(owner=request.user)
+    serialize = PokemonSerializer(pokemons, many=True)
+    return Response(serialize.data)
+
+
+@api_view(['GET'])
+def get_unowned_pokemons(request):
+    pokemons = Pokemon.objects.exclude(owner=request.user)
+    serialize = PokemonSerializer(pokemons, many=True)
+    return Response(serialize.data)
+
+
+@api_view(['POST'])
+def add_pokemon(request):
+    pokemon = Pokemon.objects.filter(id=request.data['id'])
+    pokemon.update(owner=request.user)
+    serialize = PokemonSerializer(pokemon, many=True)
+    return Response(serialize.data)
+
+
+@api_view(['POST'])
+def release_pokemon(request):
+    pokemon = Pokemon.objects.filter(id=request.data['id'])
+    pokemon.update(owner=None)
+    serialize = PokemonSerializer(pokemon, many=True)
+    return Response(serialize.data)
