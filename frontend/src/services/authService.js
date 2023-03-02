@@ -46,7 +46,3 @@ export const logout = () => {
   localStorage.removeItem("username");
   window.location.replace("/login");
 };
-
-// export const getCurrentUser = () => {
-//   return JSON.parse(localStorage.getItem("user"));
-// };

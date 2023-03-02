@@ -22,8 +22,6 @@ urlpatterns = [
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),
     path('pokemon/allpokemon/', views.get_all_pokemons, name='get_all_pokemons'),
-    # path('pokemon/wildpokemon/all/',
-    #      views.get_wild_pokemons, name='get_wild_pokemons'),
     path('pokemon/wildpokemon/', views.get_random_wild_pokemon,
          name="get_random_wild_pokemon"),
     path('pokemon/mypokemon/', views.get_owned_pokemons, name='get_owned_pokemons'),

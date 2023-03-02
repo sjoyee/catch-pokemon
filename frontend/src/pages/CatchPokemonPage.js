@@ -161,48 +161,70 @@ const CatchPokemonPage = () => {
                         </Button>
                       </Grid>
                       <Grid item>
-                        {check ? (
-                          correct ? (
-                            <div>
+                        {() => {
+                          // guessing
+                          if (check) {
+                            // if guessed number correct
+                            if (correct) {
+                              return (
+                                <div>
+                                  <Typography>
+                                    You caught the pokemon! Congratulations.
+                                  </Typography>
+                                  <Button
+                                    variant="contained"
+                                    sx={{ m: 2 }}
+                                    onClick={searchNewPokemon}
+                                  >
+                                    Search New Pokemon
+                                  </Button>
+                                  <Button
+                                    variant="contained"
+                                    sx={{ m: 2 }}
+                                    href="/mypokemon"
+                                    color="success"
+                                  >
+                                    Check Owned Pokemons
+                                  </Button>
+                                </div>
+                              );
+                            } else {
+                              // wrong answer
+                              if (counter >= 3) {
+                                // exceed three tries
+                                return (
+                                  <div>
+                                    <Typography>
+                                      The pokemon escaped! Please search for
+                                      another pokemon.
+                                    </Typography>
+                                    <Button
+                                      variant="contained"
+                                      sx={{ my: 2 }}
+                                      onClick={searchNewPokemon}
+                                    >
+                                      Search New Pokemon
+                                    </Button>
+                                  </div>
+                                );
+                              } else {
+                                // haven't exceed three tries
+                                return (
+                                  <Typography>
+                                    Missed! Please Try Again.
+                                  </Typography>
+                                );
+                              }
+                            }
+                          } else {
+                            // haven't guess yet
+                            return (
                               <Typography>
-                                You caught the pokemon! Congratulations.
+                                Guess Any Number from 1 to 10
                               </Typography>
-                              <Button
-                                variant="contained"
-                                sx={{ m: 2 }}
-                                onClick={searchNewPokemon}
-                              >
-                                Search New Pokemon
-                              </Button>
-                              <Button
-                                variant="contained"
-                                sx={{ m: 2 }}
-                                href="/mypokemon"
-                                color="success"
-                              >
-                                Check Owned Pokemons
-                              </Button>
-                            </div>
-                          ) : counter >= 3 ? (
-                            <div>
-                              <Typography>
-                                The pokemon escaped! Please search for another
-                                pokemon.
-                              </Typography>
-                              <Button
-                                variant="contained"
-                                sx={{ my: 2 }}
-                                onClick={searchNewPokemon}
-                              >
-                                Search New Pokemon
-                              </Button>
-                            </div>
-                          ) : (
-                            <Typography>Missed! Please Try Again.</Typography>
-                          )
-                        ) : (
-                          <Typography>Guess Any Number from 1 to 10</Typography>
-                        )}
+                            );
+                          }
+                        }}
                       </Grid>
                     </Grid>
                   </Grid>

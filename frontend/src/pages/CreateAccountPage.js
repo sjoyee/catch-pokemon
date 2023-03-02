@@ -6,8 +6,6 @@ import {
   ThemeProvider,
   Typography,
 } from "@mui/material";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Pokeball from "../images/pokeball.png";
 import theme from "../components/Theme";
 import { createAccount } from "../services/authService";
