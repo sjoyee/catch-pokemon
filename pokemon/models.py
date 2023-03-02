@@ -12,6 +12,7 @@ class Pokemon(models.Model):
     attack = models.IntegerField(null=False)
     defense = models.IntegerField(null=False)
     type = models.CharField(max_length=CHAR_LENGTH, null=False)
+    level = models.IntegerField(default=1, null=False)
     owner = models.ForeignKey(User, models.SET_NULL, blank=True, null=True)
 
     def __str__(self):

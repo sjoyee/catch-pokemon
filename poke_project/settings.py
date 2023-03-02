@@ -38,12 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'pokemon',
     'users',
     'djoser',
     'rest_framework',
     'rest_framework_simplejwt',
     "rest_framework_simplejwt.token_blacklist"
+
 ]
 
 MIDDLEWARE = [
@@ -54,6 +56,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'poke_project.urls'
@@ -159,3 +163,5 @@ DJOSER = {
         'current_user': USER_SERIALIZER,
     }
 }
+
+CORS_ORIGIN_ALLOW_ALL = True
