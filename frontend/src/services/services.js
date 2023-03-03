@@ -33,9 +33,7 @@ export const addPokemon = async (pokemon_id) => {
     .then((res) => {
       success = true;
     })
-    .catch((res) => {
-      console.log(res);
-    });
+    .catch((res) => {});
   return success;
 };
 
@@ -48,8 +46,6 @@ export const releasePokemon = async (pokemon_id) => {
     .then((res) => {
       success = true;
     })
-    .catch((res) => {
-      console.log(res);
-    });
+    .catch((res) => {});
   return success;
 };

@@ -41,13 +41,10 @@ export const createAccount = async (
     });
     result = res;
   } catch (res) {
-    console.log(res.response.status, res.response.data);
     setStatus(false);
     setErrors(res.response.data);
     return;
   }
-  console.log("no error");
-  console.log(result);
   setStatus(true);
   setErrors([]);
   return;

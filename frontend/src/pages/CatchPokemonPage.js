@@ -35,7 +35,6 @@ const CatchPokemonPage = () => {
 
   const guess = () => {
     setCheck(true);
-    console.log(guessedNumber, randNumber);
     if (parseInt(guessedNumber) === randNumber) {
       setCorrect(true);
       addPokemon(pokemon.id);

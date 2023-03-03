@@ -32,7 +32,6 @@ api.interceptors.response.use(
   },
   async (err) => {
     const originalConfig = err.config;
-    console.log(err.response);
     if (
       originalConfig.url === "/auth/jwt/verify/" &&
       err.response.status === 401
