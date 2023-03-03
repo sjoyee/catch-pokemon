@@ -11,8 +11,11 @@ filepath = "./pokemon.csv"
 
 with open(filepath) as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
+    counter = 0
     for row in csv_reader:
+        counter += 1
         poke = Pokemon(
+            id=counter,
             name=row[0],
             hp=row[1],
             attack=row[2],
