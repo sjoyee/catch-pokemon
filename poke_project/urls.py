@@ -19,14 +19,17 @@ from pokemon import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('auth/', include('djoser.urls')),
-    path('auth/', include('djoser.urls.jwt')),
-    path('pokemon/allpokemon/', views.get_all_pokemons, name='get_all_pokemons'),
-    path('pokemon/wildpokemon/', views.get_random_wild_pokemon,
+    path('api/v1/auth/', include('djoser.urls')),
+    path('api/v1/auth/', include('djoser.urls.jwt')),
+    path('api/v1/pokemon/allpokemon/',
+         views.get_all_pokemons, name='get_all_pokemons'),
+    path('api/v1/pokemon/wildpokemon/', views.get_random_wild_pokemon,
          name="get_random_wild_pokemon"),
-    path('pokemon/mypokemon/', views.get_owned_pokemons, name='get_owned_pokemons'),
-    path('pokemon/unownedpokemon/', views.get_unowned_pokemons,
+    path('api/v1/pokemon/mypokemon/',
+         views.get_owned_pokemons, name='get_owned_pokemons'),
+    path('api/v1/pokemon/unownedpokemon/', views.get_unowned_pokemons,
          name='get_unowned_pokemons'),
-    path('pokemon/addpokemon/', views.add_pokemon, name='add_pokemon'),
-    path('pokemon/releasepokemon/', views.release_pokemon, name='release_pokemon')
+    path('api/v1/pokemon/addpokemon/', views.add_pokemon, name='add_pokemon'),
+    path('api/v1/pokemon/releasepokemon/',
+         views.release_pokemon, name='release_pokemon')
 ]
