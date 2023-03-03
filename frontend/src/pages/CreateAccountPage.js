@@ -9,6 +9,7 @@ import {
 import Pokeball from "../images/pokeball.png";
 import theme from "../components/Theme";
 import { createAccount } from "../services/authService";
+import CreateAccountDialog from "../components/CreateAccountDialog";
 
 const CreateAccountPage = () => {
   const [username, setUsername] = useState("");
@@ -16,14 +17,32 @@ const CreateAccountPage = () => {
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
+  const [status, setStatus] = useState(false);
+  const [errors, setErrors] = useState([]);
+  const [open, setOpen] = useState(false);
 
   const createAcct = () => {
-    createAccount(username, firstName, lastName, password, password2);
+    createAccount(
+      username,
+      firstName,
+      lastName,
+      password,
+      password2,
+      setStatus,
+      setErrors
+    );
+    setOpen(true);
   };
 
   return (
     <div>
       <ThemeProvider theme={theme}>
+        <CreateAccountDialog
+          status={status}
+          errors={errors}
+          open={open}
+          setOpen={setOpen}
+        />
         <Grid
           container
           spacing={0}

@@ -1,18 +1,24 @@
 import api from "./api";
 
-export const login = async (username, password) => {
-  const response = await api.post("/auth/jwt/create/", {
-    username,
-    password,
-  });
-  if (response.data.access) {
-    localStorage.setItem("user", JSON.stringify(response.data));
-    localStorage.setItem("username", username);
-    window.location.replace("/");
-  } else {
-    window.location.replace("/login");
+export const login = async (username, password, setFail) => {
+  try {
+    const response = await api.post("/auth/jwt/create/", {
+      username,
+      password,
+    });
+    setFail(false);
+    if (response.data.access) {
+      localStorage.setItem("user", JSON.stringify(response.data));
+      localStorage.setItem("username", username);
+      window.location.replace("/");
+    } else {
+      window.location.replace("/login");
+    }
+  } catch (e) {
+    setFail(true);
+    return false;
   }
-  return response.data;
+  return true;
 };
 
 export const createAccount = async (
@@ -20,25 +26,31 @@ export const createAccount = async (
   firstName,
   lastName,
   password,
-  password2
+  password2,
+  setStatus,
+  setErrors
 ) => {
-  let success = false;
-  await api
-    .post("/auth/users/", {
+  let result = null;
+  try {
+    const res = await api.post("/auth/users/", {
       username: username,
       first_name: firstName,
       last_name: lastName,
       password: password,
       re_password: password2,
-    })
-    .then((res) => {
-      success = true;
-      window.location.replace("/login");
-    })
-    .catch((res) => {
-      console.log(res);
     });
-  return success;
+    result = res;
+  } catch (res) {
+    console.log(res.response.status, res.response.data);
+    setStatus(false);
+    setErrors(res.response.data);
+    return;
+  }
+  console.log("no error");
+  console.log(result);
+  setStatus(true);
+  setErrors([]);
+  return;
 };
 
 export const logout = () => {

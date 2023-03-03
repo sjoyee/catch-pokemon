@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import CatchPokemonPage from "./pages/CatchPokemonPage";
 import AllPokemonPage from "./pages/AllPokemonPage";
@@ -23,10 +23,11 @@ const Router = () => {
       <Route
         path="/"
         element={
-          <Navigate
-            to={JSON.parse(localStorage.getItem("user")) ? "/catch" : "/login"}
-            replace
-          />
+          JSON.parse(localStorage.getItem("user")) ? (
+            <CatchPokemonPage />
+          ) : (
+            <LoginPage />
+          )
         }
       ></Route>
       <Route path="/login" element={<LoginPage />} />

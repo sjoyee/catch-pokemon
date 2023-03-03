@@ -16,6 +16,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Pokeball from "../images/pokeball.png";
 import theme from "../components/Theme";
 import { login } from "../services/authService";
+import LoginDialog from "../components/LoginDialog";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -26,14 +27,20 @@ const LoginPage = () => {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [open, setOpen] = useState(false);
+  const [fail, setFail] = useState(false);
 
   const loginAcct = () => {
-    login(username, password);
+    login(username, password, setFail);
+    if (fail) {
+      setOpen(true);
+    }
   };
 
   return (
     <div>
       <ThemeProvider theme={theme}>
+        <LoginDialog open={open} setOpen={setOpen} />
         <Grid
           container
           spacing={0}

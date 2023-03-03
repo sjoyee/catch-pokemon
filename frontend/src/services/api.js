@@ -2,8 +2,7 @@ import axios from "axios";
 import { logout } from "./authService";
 
 const api = axios.create({
-  //   baseURL: process.env.FRONTEND_BASE_URL,
-  baseURL: "http://127.0.0.1:8000",
+  baseURL: process.env.REACT_APP_API_URL,
   headers: {
     "Content-Type": "application/json",
   },
@@ -43,7 +42,6 @@ api.interceptors.response.use(
       // if access Token is expired
       if (err.response.status === 401 && !originalConfig._retry) {
         originalConfig._retry = true;
-
         try {
           const rs = await api.post("/auth/jwt/refresh/", {
             refresh: refresh(),
