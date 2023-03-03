@@ -33,18 +33,6 @@ const UnownedPokemonTable = () => {
                     </Typography>
                   </TableCell>
                   <TableCell align="right">
-                    <Typography sx={{ fontWeight: "bold" }}>HP</Typography>
-                  </TableCell>
-                  <TableCell align="right">
-                    <Typography sx={{ fontWeight: "bold" }}>Attack</Typography>
-                  </TableCell>
-                  <TableCell align="right">
-                    <Typography sx={{ fontWeight: "bold" }}>Defense</Typography>
-                  </TableCell>
-                  <TableCell align="right">
-                    <Typography sx={{ fontWeight: "bold" }}>Type</Typography>
-                  </TableCell>
-                  <TableCell align="right">
                     <Typography sx={{ fontWeight: "bold" }}>
                       Has Owner
                     </Typography>
@@ -62,10 +50,6 @@ const UnownedPokemonTable = () => {
                     <TableCell component="th" scope="row">
                       {poke.name}
                     </TableCell>
-                    <TableCell align="right">{poke.hp}</TableCell>
-                    <TableCell align="right">{poke.attack}</TableCell>
-                    <TableCell align="right">{poke.defense}</TableCell>
-                    <TableCell align="right">{poke.type}</TableCell>
                     <TableCell align="right">
                       {poke.owner ? "Yes" : "No"}
                     </TableCell>

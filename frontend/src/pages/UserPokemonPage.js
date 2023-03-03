@@ -30,6 +30,7 @@ const UserPokemonPage = () => {
   const releaseMyPokemon = (id) => {
     if (releasePokemon(id)) {
       getOwnedPokemons(setPokemons);
+      window.location.reload();
     }
   };
 

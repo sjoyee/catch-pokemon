@@ -11,6 +11,7 @@ import React from "react";
 const CreateAccountDialog = ({ status, errors, open, setOpen }) => {
   const handleClose = () => {
     setOpen(false);
+    window.location.reload();
   };
   return (
     <div>
