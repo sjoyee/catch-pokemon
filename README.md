@@ -1,6 +1,16 @@
 # Gotta Catch 'em All
 
 Link: http://ec2-3-16-113-231.us-east-2.compute.amazonaws.com:3000/
+<br/>
+User credentials
+
+- Username: sjoyee
+- Password: @bcd1234
+
+or
+
+- Username: ashishero
+- Password: @bcd9876
 
 ## Front-End
 
